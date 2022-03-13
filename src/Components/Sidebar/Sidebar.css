@@ -1,9 +1,4 @@
 
-#sidebar {
-    position: fixed;
-    width: 300px;
-    margin-top: 10px;
-  }
 input {
   width: 90%;
   padding: 12px 20px;
@@ -29,11 +24,11 @@ input {
   }
   #sidebar .pro-sidebar {
     position: fixed;
-    width: 300px;
-    min-width: 300px;
     height: 600px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
+    background-color: rgba(231, 94, 94, 0.397);
   }
   #sidebar .pro-sidebar.collapsed {
     width: 80px;

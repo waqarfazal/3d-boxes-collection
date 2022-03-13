@@ -6,9 +6,7 @@ const Header = ({children}) => {
     <header
       id="header-area"
     >
-      <div className = "d-flex justify-content-end">
-          {children}
-      </div>
+      {children}
     </header>
   );
 };

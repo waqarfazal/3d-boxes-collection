@@ -4,8 +4,15 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux';
 import {RoutesNames} from '../../routes/RoutesNames';
-import { Link } from "react-router-dom";
-const Main = ({lists}) => {
+import { useNavigate } from "react-router-dom";
+import { removeAllBoxes } from "../../State/actions/boxSelectionActions";
+const Main = ({lists, removeAllBoxes}) => {
+    let navigate = useNavigate();
+    const handleAddNew = () => {
+        removeAllBoxes()
+        const path = RoutesNames.new.path;
+        navigate(path);
+    }
     return (
         <>
             <Layout>
@@ -13,10 +20,10 @@ const Main = ({lists}) => {
                     <Alert variant="success">
                         <Alert.Heading>Hey, nice to see you  😊</Alert.Heading>
                         
-                        {lists.length === 0 ? <p>
-                            You didn't created any list yet. Please add a list first. &nbsp;&nbsp;&nbsp; <Link to={RoutesNames.new.path}><Button> Add New</Button></Link>
+                        {lists.length === 0 ? <p> 
+                            You didn't created any list yet. Please add a list first. &nbsp;&nbsp;&nbsp; <Button onClick={handleAddNew}> Add New</Button>
                         </p>: <p>
-                        Please select a list which you want to see or add a new list &nbsp;&nbsp;&nbsp; <Link to={RoutesNames.new.path}><Button> Add New</Button></Link></p>}
+                        Please select a list which you want to see, edit or Delete. OR add a new list &nbsp;&nbsp;&nbsp; <Button onClick={handleAddNew}> Add New</Button></p>}
                     </Alert>
                 </div>
 
@@ -30,5 +37,11 @@ const mapStateToProps = state => {
       lists: state.listsData,
     };
   };
-  
-  export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = dispatch => {
+    return {
+        removeAllBoxes: () => {
+            dispatch(removeAllBoxes())
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

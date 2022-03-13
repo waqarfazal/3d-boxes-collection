@@ -45,12 +45,9 @@ const Sidebar = ({ lists }) => {
   ));
 
   return (
-    <>
-      <div id="sidebar">
-        {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={false}>
           <SidebarHeader>
-            <div id="seach">
+            <div id="seach"> 
               <input
                 id="name"
                 placeholder="Search......"
@@ -67,9 +64,9 @@ const Sidebar = ({ lists }) => {
                 filteredLists.length !== 0 ? filteredLists.map((item) => (
                   <MenuItem>
                     <SingleItem name={item.name} />
-                    <Link to={`${RoutesNames.view.path}/${item.name}`} state={{id: item.name}} />
+                    <Link to={`${RoutesNames.view.path}/${item.name}`} state={{id: item.id}} />
                   </MenuItem> 
-                )) : <div className="d-flex align-items-center justify-content-center">
+                )) : <div className="d-flex align-items-center justify-content-center" style={{paddingLeft: "10px", paddingRight: "10px"}}>
                 <Alert variant="info">
                   <Alert.Heading>No Match Found &nbsp;😊</Alert.Heading>
                 </Alert>
@@ -87,8 +84,6 @@ const Sidebar = ({ lists }) => {
             </Menu>
           </SidebarContent>
         </ProSidebar>
-      </div>
-    </>
   );
 };
 

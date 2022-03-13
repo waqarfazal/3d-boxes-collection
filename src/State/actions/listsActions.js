@@ -4,20 +4,20 @@ export const DELETE_LIST = 'DELETE_LIST';
 export const addList = (data) =>{
     return {
       type: 'ADD_LIST',
-      data,
+      data, 
     }
   }
 
 export const updateList = (data) =>{
     return {
       type: 'UPDATE_LIST',
-      data,
+      data, 
     }
   }
 
-export const deleteList = (name) =>{
+export const deleteList = (id) =>{
     return {
       type: 'DELETE_LIST',
-      name,
+      id,
     }
   }

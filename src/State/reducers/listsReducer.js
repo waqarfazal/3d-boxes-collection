@@ -3,10 +3,7 @@ import {
   UPDATE_LIST,
   DELETE_LIST
 } from "../actions/listsActions";
-const initState = [
-  {name: "Dummy1"},
-  {name: "Dummy2"},
-];
+const initState = [];
 const listsReducer = (state=initState, action) => {
     switch (action.type) {
       case ADD_LIST:
@@ -16,13 +13,13 @@ const listsReducer = (state=initState, action) => {
         ];
       case UPDATE_LIST:
         return state.map(item =>
-          item.name === action.data.name
-            ? { ...item, items: action.data.items }
+          item.id === action.data.id
+            ? { ...item, boxes: action.data.boxes, name: action.data.name }
             : item
         );
       case DELETE_LIST:
         const remainingItems = (state) =>
-          state.filter(item => item.name !== action.name);
+          state.filter(item => item.id !== action.id);
         return remainingItems(state);
         
       default:

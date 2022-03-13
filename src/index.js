@@ -10,12 +10,12 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './State/reducers/rootReducer';
 
-const store = createStore(
+const store = createStore( 
   rootReducer,
 ); 
 ReactDOM.render(
     <Router>
-      <ToastProvider>
+      <ToastProvider autoDismiss = {true}>
         <Provider store={store}>
           <RoutesDef />
         </Provider>
