@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Main from './Pages/Main/Main'
 import reportWebVitals from './reportWebVitals';
+import RoutesDef from "./routes/Routes"
+import { ToastProvider } from 'react-toast-notifications';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './State/reducers/rootReducer';
 
+const store = createStore(
+  rootReducer,
+); 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Router>
+      <ToastProvider>
+        <Provider store={store}>
+          <RoutesDef />
+        </Provider>
+      </ToastProvider>
+    </Router>,
   document.getElementById('root')
 );
 
