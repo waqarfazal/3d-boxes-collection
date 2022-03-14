@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
-import {useFrame } from '@react-three/fiber'
-const Box = ({
+const Box = ({ 
   id, 
   position, 
   boxGeometryArgs, 
@@ -11,39 +10,43 @@ const Box = ({
   selectedBoxes,
   isVisible=true,
   isActive=false,
+  isView = false,
+  geometryData
 }) => {
   // This reference will give us direct access to the mesh
-  const mesh = useRef()
+  const meshRef = useRef()
+
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(isActive);
 
-  // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => (mesh.current.rotation.x += 0.01))
-  
   const handleOnSelect = () => {
-    if(active) {
-      setActive(false);
-      removeBox(id)
-    } else {
-      setActive(true);
-      addBox(id);
+    if(!isView){
+      if(active) {
+        setActive(false);
+        removeBox(id)
+      } else {
+        setActive(true);
+        let data = geometryData;
+        addBox(id, data);
+      }
     }
   }
-  //Return the view, these are regular Threejs elements expressed in JSX
   return (
-    <mesh
-      position = {position}
-      ref={mesh}
-      visible={isVisible}
-      scale={scale}
-      rotation={rotation}
-      onClick={handleOnSelect}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}>
-      <boxGeometry args={boxGeometryArgs} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : active? 'hotpink': isActive ? 'hotpink': 'orange'} />
-    </mesh>
+    <>
+      <mesh
+        position = {position}
+        ref={meshRef}
+        visible={isVisible}
+        scale={scale}
+        rotation={rotation}
+        onClick={handleOnSelect}
+        onPointerOver={(event) => setHover(true)}
+        onPointerOut={(event) => setHover(false)}>
+        <boxGeometry attach="geometry" args={boxGeometryArgs} />
+        <meshStandardMaterial  attach="material" color={isView ? 'orange' : hovered ? 'hotpink' : active? 'hotpink': 'orange'} />
+      </mesh>
+    </>
   )
 }
 

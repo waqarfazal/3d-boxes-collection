@@ -9,3 +9,12 @@ input {
     margin-bottom: 10px;
     margin-left: 10px;
   }
+
+/* style for transformation type select */
+.transformationtype{
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}

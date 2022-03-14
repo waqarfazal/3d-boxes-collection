@@ -2,10 +2,11 @@ export const ADD_BOX = 'ADD_BOX';
 export const ADD_MULTIPLE_BOXES = "ADD_MULTIPLE_BOXES";
 export const REMOVE_BOX = 'REMOVE_BOX';
 export const REMOVE_ALL_BOXES = 'REMOVE_ALL_BOXES';
-export const addBox = (id) =>{
+export const addBox = (id, data) =>{
     return {
       type: 'ADD_BOX',
       id,
+      data
     }
 }
 export const addMultipleBoxes = (data) => {

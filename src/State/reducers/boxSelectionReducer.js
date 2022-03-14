@@ -10,7 +10,10 @@ import {
         case ADD_BOX:
           return [
             ...state,
-            action.id
+            {
+              id: action.id,
+              data: action.data 
+            }
           ];
         case ADD_MULTIPLE_BOXES:
           return [
@@ -19,7 +22,7 @@ import {
           ];
         case REMOVE_BOX:
           const remainingItems = (state) =>
-            state.filter(item => item !== action.id);
+            state.filter(item => item.id !== action.id);
           return remainingItems(state);
     
         case REMOVE_ALL_BOXES:

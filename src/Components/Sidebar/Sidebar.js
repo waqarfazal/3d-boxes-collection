@@ -45,6 +45,7 @@ const Sidebar = ({ lists }) => {
   ));
 
   return (
+      
         <ProSidebar collapsed={false}>
           <SidebarHeader>
             <div id="seach"> 
@@ -63,19 +64,19 @@ const Sidebar = ({ lists }) => {
               {lists.length !== 0 ?
                 filteredLists.length !== 0 ? filteredLists.map((item) => (
                   <MenuItem>
-                    <SingleItem name={item.name} />
+                    <SingleItem name={item.name} image={item.image} />
                     <Link to={`${RoutesNames.view.path}/${item.name}`} state={{id: item.id}} />
                   </MenuItem> 
-                )) : <div className="d-flex align-items-center justify-content-center" style={{paddingLeft: "10px", paddingRight: "10px"}}>
+                )) : <div className="d-flex align-items-center justify-content-center" style={{marginLeft: "10px", marginRight: "10px"}}>
                 <Alert variant="info">
                   <Alert.Heading>No Match Found &nbsp;😊</Alert.Heading>
                 </Alert>
 
-              </div> : <div className="d-flex align-items-center justify-content-center">
+              </div> : <div className="d-flex align-items-center justify-content-center" style={{marginLeft: "10px", marginRight: "10px"}}>
                   <Alert variant="info">
-                    <Alert.Heading>Hey, The list is empty &nbsp;😊</Alert.Heading>
+                    <Alert.Heading>No List Found &nbsp;😊</Alert.Heading>
                     <p>
-                      When you will add new list, they will be displayed to here.
+                      When you will add new list, they will be displayed to you here.
                     </p>
                   </Alert>
 
